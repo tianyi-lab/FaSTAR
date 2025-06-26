@@ -1,0 +1,1 @@
+Segment the dog, detect the person, recolor the leaves to red, and expand the image

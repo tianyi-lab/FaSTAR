@@ -1,0 +1,79 @@
+tools:
+  YOLOv7:
+    class: "YOLOTool"
+    module: tools.yolov7
+    type: "local"
+    inputs: ["image", "from_object", "subtask_name"]
+    outputs: ["image", "bounding_boxes", "execution_time", "instance_count"]
+    requirements: "requirements/yolo.txt"
+    checkpoint: "checkpoints/yolov7.pt"
+    img_size: 640
+    conf_thres: 0.6
+    iou_thres: 0.6
+
+  StabilityRemoveBG:
+    class: "StabilityRemoveBGTool"
+    type: "api"
+    inputs: ["image"]
+    outputs: ["image", "execution_time"]
+    requirements: "requirements/stability.txt"
+    output_format: "webp"
+
+  StabilitySearchRecolor:
+    class: "StabilitySearchRecolorTool"
+    module: tools.stabilitysearchrecolor
+    type: "api"
+    inputs: ["image", "from_object", "target_object"]
+    outputs: ["image", "execution_time"]
+    requirements: "requirements/stability.txt"
+    output_format: "png"
+
+  StabilityInpaint:
+    class: "StabilityInpaintTool"
+    module: tools.stabilityinpaint
+    type: "api"
+    inputs: ["image", "target_object"]
+    outputs: ["image", "execution_time"]
+    requirements: "requirements/stability.txt"
+    output_format: "png"
+
+  StabilityOutpaint:
+    class: "StabilityOutpaintTool"
+    module: tools.stabilityoutpaint
+    type: "api"
+    inputs: ["image"]
+    outputs: ["image", "execution_time"]
+    requirements: "requirements/stability.txt"
+    output_format: "png"
+
+  SAM:
+    class: "SAMTool"
+    module: tools.sam
+    type: "local"
+    inputs: ["image", "bounding_boxes", "subtask_name"]
+    outputs: ["image","cutout_images", "execution_time", "mask_size", "relative_mask_area", "rgb_color", "text_color"]
+    requirements: "requirements/sam.txt"
+    checkpoint: "checkpoints/sam_vit_h_4b8939.pth"
+    model_type: "vit_h"
+    multimask_output: true
+
+  GroundingDINO:
+    class: "GroundingDINOTool"
+    module: tools.groundingdino
+    type: "local"
+    inputs: ["image", "from_object", "subtask_name"]
+    outputs: ["image", "bounding_boxes", "execution_time"]
+    requirements: "requirements/groundingdino.txt"
+    config_path: "tools/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py"
+    checkpoint: "checkpoints/groundingdino_swint_ogc.pth"
+    box_threshold: 0.5
+    text_threshold: 0.5
+  
+  DalleImage:
+    class: "DalleEditTool"
+    type: "api"
+    inputs: ["image", "target_object"]
+    outputs: ["image", "execution_time"]
+    api_url: "https://api.openai.com/v1/images/edits"
+    size: "1024x1024"
+    n: 1

@@ -1,0 +1,241 @@
+{
+  "SR1": {
+    "subtask": "Object Recoloration",
+    "tools": [
+      "GroundingDINO",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "object_size: Not Too Small",
+      "overlapping_critical_elements: None (eg. Some text written on object to be recolored and this text is critical for some future or past subtask)"
+    ],
+    "avg_cost": 10.39,
+    "avg_quality": 0.89
+  },
+  "SR2": {
+    "subtask": "Object Recoloration",
+    "tools": [
+      "StabilitySearchRecolor"
+    ],
+    "activation_rules": [
+      "color_transition: not extreme luminance change (e.g., not White\u2194Black)"
+    ],
+    "avg_cost": 12.92,
+    "avg_quality": 0.95
+  },
+  "SR3": {
+    "subtask": "Object Recoloration",
+    "tools": [
+      "YOLOv7",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "yolo_class_support: Object supported as a yolo class",
+      "object_size: Not Too Small",
+      "overlapping_critical_elements: None (eg. Some text written on object to be recolored and this text is critical for some future or past subtask)"
+    ],
+    "avg_cost": 10.36,
+    "avg_quality": 0.88
+  },
+  "SR4": {
+    "subtask": "Object Replacement",
+    "tools": [
+      "GroundingDINO",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "object_size: Not too small",
+      "size_difference(original, target objects): Not too big (eg. hen to car, etc)",
+      "shape_difference(original, target objects): Not too small (i.e., not confusingly similar, eg. bench and chair)"
+    ],
+    "avg_cost": 10.41,
+    "avg_quality": 0.91
+  },
+  "SR5": {
+    "subtask": "Object Replacement",
+    "tools": [
+      "SD Search&Replace"
+    ],
+    "activation_rules": [
+      "instance_count(object_to_replace): 1, 2",
+      "object_clarity: High (e.g., common, opaque, substantial, fully visible)",
+      "shape_difference(original, target): Not Very Large"
+    ],
+    "avg_cost": 12.12,
+    "avg_quality": 0.97
+  },
+  "SR6": {
+    "subtask": "Object Replacement",
+    "tools": [
+      "YOLOv7",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "yolo_class_support: Object supported as a yolo class",
+      "object_size: Not too small",
+      "size_difference(original, target objects): Not too big (eg. hen to car, etc)",
+      "shape_difference(original, target objects): Not too small (i.e., not confusingly similar, eg. bench and chair)"
+    ],
+    "avg_cost": 10.38,
+    "avg_quality": 0.91
+  },
+  "SR7": {
+    "subtask": "Object Removal",
+    "tools": [
+      "GroundingDINO",
+      "SAM",
+      "SD Erase"
+    ],
+    "activation_rules": [
+      "object_size: Not too big",
+      "background_content_type: Simple_Texture OR Homogenous_Area OR Repeating_Pattern (e.g., wall, sky, grass, water, simple ground)",
+      "background_reconstruction_need: Filling/Inpainting (vs. Drawing/Semantic_Completion)"
+    ],
+    "avg_cost": 11.97,
+    "avg_quality": 0.98
+  },
+  "SR8": {
+    "subtask": "Object Removal",
+    "tools": [
+      "YOLOv7",
+      "SAM",
+      "SD Erase"
+    ],
+    "activation_rules": [
+      "yolo_class_support: Object supported as a yolo class",
+      "object_size: Not too big",
+      "background_content_type: Simple_Texture OR Homogenous_Area OR Repeating_Pattern (e.g., wall, sky, grass, water, simple ground)",
+      "background_reconstruction_need: Filling/Inpainting (vs. Drawing/Semantic_Completion)"
+    ],
+    "avg_cost": 11.95,
+    "avg_quality": 0.98
+  },
+  "SR9": {
+    "subtask": "Object Removal",
+    "tools": [
+      "GroundingDINO",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "object_size: Not small",
+      "background_content_type: Complex_Scene OR Occludes_Specific_Objects",
+      "background_reconstruction_need: Drawing/Semantic_Completion (vs. Filling/Inpainting)"
+    ],
+    "avg_cost": 10.39,
+    "avg_quality": 0.95
+  },
+  "SR10": {
+    "subtask": "Object Removal",
+    "tools": [
+      "YOLOv7",
+      "SAM",
+      "StabilityInpaint"
+    ],
+    "activation_rules": [
+      "yolo_class_support: Object supported as a yolo class",
+      "object_size: Not small",
+      "background_content_type: Complex_Scene OR Occludes_Specific_Objects",
+      "background_reconstruction_need: Drawing/Semantic_Completion (vs. Filling/Inpainting)"
+    ],
+    "avg_cost": 10.37,
+    "avg_quality": 0.95
+  },
+  "SR11": {
+    "subtask": "Text Removal",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "SD Erase"
+    ],
+    "activation_rules": [
+      "background_content_behind_text: Plain_Color OR Simple_Gradient OR Simple_Texture (Not Complex_Image or Specific_Objects)",
+      "background_reconstruction_need: Filling/Inpainting (vs. Drawing/Semantic_Completion)"
+    ],
+    "avg_cost": 17.81,
+    "avg_quality": 0.93
+  },
+  "SR12": {
+    "subtask": "Text Removal",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "DALL-E"
+    ],
+    "activation_rules": [
+      "background_artifact_tolerance: High (e.g., clouds, noisy textures, abstract patterns where minor flaws are acceptable)",
+      "surrounding_context_similarity(to_text): Low (e.g., nearby areas do not contain other text or fine line patterns)"
+    ],
+    "avg_cost": 17.95,
+    "avg_quality": 0.96
+  },
+  "SR13": {
+    "subtask": "Text Removal",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "Painting"
+    ],
+    "activation_rules": [
+      "background_content_behind_text: Uniform_Solid_Color (Strictly no texture, gradient, or objects)",
+      "background_reconstruction_need: None (Simple solid color fill is sufficient)"
+    ],
+    "avg_cost": 6.69,
+    "avg_quality": 0.95
+  },
+  "SR14": {
+    "subtask": "Text Replacement",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "SD Erase",
+      "Text Writing"
+    ],
+    "activation_rules": [
+      "background_content_behind_text: Plain_Color OR Simple_Gradient OR Simple_Texture (Not Complex_Image or Specific_Objects)",
+      "background_reconstruction_need: Filling/Inpainting (vs. Drawing/Semantic_Completion)"
+    ],
+    "avg_cost": 17.85,
+    "avg_quality": 0.92
+  },
+  "SR15": {
+    "subtask": "Text Replacement",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "DALL-E",
+      "Text Writing"
+    ],
+    "activation_rules": [
+      "background_artifact_tolerance: High (e.g., clouds, noisy textures, abstract patterns where minor flaws are acceptable)",
+      "surrounding_context_similarity(to_text): Low (e.g., nearby areas do not contain other text or fine line patterns)"
+    ],
+    "avg_cost": 18.02,
+    "avg_quality": 0.94
+  },
+  "SR16": {
+    "subtask": "Text Replacement",
+    "tools": [
+      "CRAFT",
+      "EasyOCR+DeepFont",
+      "LLM",
+      "Painting",
+      "Text Writing"
+    ],
+    "activation_rules": [
+      "background_content_behind_text: Uniform_Solid_Color (Strictly no texture, gradient, or objects)",
+      "background_reconstruction_need: None (Simple solid color fill is sufficient)"
+    ],
+    "avg_cost": 6.77,
+    "avg_quality": 0.93
+  }
+}

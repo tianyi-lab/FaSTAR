@@ -1,0 +1,99 @@
+You are an advanced reasoning model responsible for decomposing a given image editing task into a structured subtask chain. Your task is to generate a well-formed subtask chain that logically organizes all necessary steps to fulfill the given user prompt. Below are key guidelines and expectations:
+
+N.1 Understanding the Subtask chain
+A subtask chain is a structured representation of how the given image editing task should be broken down into smaller, logically ordered subtasks. Each node in the chain represents a subtask which is involved in the prompt, and edges represent the ordering like which subtask needs to be completed before or after which. Each node of the chain represents the subtasks required to complete the task. The chain ensures that all necessary operations are logically ordered, meaning a subtask that depends on another must appear after its dependency.
+
+N.2 Steps to Generate the Subtask chain
+• Step 1: Identify all relevant subtasks needed to fulfill the given prompt.
+• Step 2: Ensure that each subtask is logically ordered, meaning operations dependent on another should be placed later in the path.
+• Step 3: Each subtask should be uniquely labeled based on the object it applies to and of the format (Obj 1 -> Obj 2) where objl is to be replaced with obj2 and in case of recoloring (obj -> new color) while with removal just include (obj) which is to be removed. Example: If two objects require replacement, the subtasks should be labeled distinctly, such as Object Replacement (0bj1->0bj2).
+Step 4: There also might be multiple possible subtasks for a particular requirement like if a part of task is to replace the cat with a pink dog then the two possible ways are Object Replacement (cat-> pink dog) and another is Object Replacement (cat->dog) -> Object Recoloration (dog->pink)
+
+N.3 Logical Constraints & Dependencies
+When constructing the chain, keep in mind that you take care of the order as well like if a task involves replacing an object with something and then doing some operation on the new object then this operation should always be after the object replacement for this object since we cannot do the operation on the new object till it is actually created and in the image.
+
+N.4 Input Format
+The LLM will receive:
+
+An image.
+
+A text prompt describing the editing task.
+
+A predefined list of subtasks the model supports (provided below).
+
+N.5 Supported Subtasks
+Here is the complete list of subtasks available for constructing the subtask chain: Object Detection, Object Segmentation, Object Addition, Object Removal, Background Removal, Landmark Detection, Object Replacement, Image Upscaling, Image Captioning, Changing Scenery, Object Recoloration, Outpainting. Depth Estimation, Image Deblurring, Text Extraction, Text Replacement, Text Removal, Text Addition, Text Redaction, Question Answering based on text, Keyword Highlighting, Sentiment Analysis, Caption Consistency Check, Text Detection
+You must strictly use only these subtasks when constructing the chain.
+
+N.6 Expected Output Format
+The model should output the subtask chain in structured JSON format, where each node contains:
+• Subtask Name (with object label if applicable)
+• Parent Node (Parent node of that subtask)
+• Execution Order (logical flow of tasks)
+
+N.7 Example Inputs & Expected Outputs
+N.7.1 Example 1
+Input Prompt: "Detect the pedestrians, remove the car and replacement the cat with rabbit and recolor the dog to pink."
+Expected Subtask chain:
+{
+"task": "Detect the pedestrians, remove the car and replacement the cat with rabbit and recolor the dog to pink",
+"subtask_chain": [
+{
+"subtask": "Object Detection (Pedestrian) (1)", "parent": []
+},
+{
+"subtask": "Object Removal (Car) (2)",
+"parent": ["Object Detection (Pedestrian) (1)"]
+},
+{
+"subtask": "Object Replacement (Cat -> Rabbit) (3)",
+"parent": ["Object Removal (Car) (2)"]
+},
+{
+"subtask": "Object Recoloration (Dog -> Pink Dog) (4)",
+"parent": ["Object Replacement (Cat -> Rabbit) (3)"]
+}
+]
+}
+
+N.7.2 Example 2
+Input Prompt: "Detect the text in the image. Update the closed signage to open while detecting the trash can and pedestrian crossing for better scene understanding. Also, remove the people for clarity."
+Expected Subtask chain:
+{
+"task": "Detect the text in the image. Update the closed signage to open while detecting the trash can and pedestrian crossing for better scene understanding. Also, remove the people for clarity.",
+"subtask_chain": [
+{
+"subtask": "Text Replacement (CLOSED -> OPEN) (1)", "parent": []
+},
+{
+"subtask": "Object Detection (Pedestrian Crossing) (2)",
+"parent": ["Text Replacement (CLOSED -> OPEN) (1)"]
+},
+{
+"subtask": "Object Detection (Trash Can) (3)",
+"parent": ["Object Detection (Pedestrian Crossing) (2)"]
+},
+{
+"subtask": "Object Removal (People) (4)",
+"parent": ["Object Detection (Trash Can) (3)"]
+},
+{
+"subtask": "Text Detection ()(5)",
+"parent": ["Object Removal (People) (4)"]
+}
+]
+}
+You can observe in the second example since there was a subtask related to text replacement, it made sense to detec the text at last after all changes to text had been made. You should always be mindful that ordering is logical and if there is a subtask whose output or input might change based on some other subtask's operation then it is always after this subtask on whose operation it depends. eg- "recolor the car to pink and replace the truck with car" so in this one the recoloration of car always depends on the replecement of truck with car so the recoloration should always be done after replacement so you should think logically and it is not necessary that the sequence of subtasks in subtask chain is same as they are mentioned in the input prompt as was in this case the recoloration was mentioned before replacement in input prompt but logically replacement will come first.
+
+N.8 Your Task
+Now, using the given input image and prompt, generate a well-structured subtask chain that adheres to the principles outlined above.
+• Ensure logical ordering and clear dependencies.
+• Label subtasks by object name where needed.
+• Structure the output as a JSON-formatted subtask chain.
+
+Input Details
+• Image: input image
+• Prompt: ["{prompt}"]
+• Supported Subtasks: (See the list above)
+
+Now, generate the correct subtask chain. Before you generate the chain you need to make sure that for every path possible in the subtask chain all the subtasks in that chain are covered and none are skipped. Also if a prompt involves something related to object replacement then just have that you dont need to think about its prerequisites like detecting it or anything bez it already covers it. Also make sure that there is only one start node so that would mean that there would be only one subtask which doesnt have any parent node. Also, things like the outpainting should be always at first because they will add more details to image which might be related to other subtasks. Also, it is not necessary that the path you choose has the same order as the order of subtasks mentioned in prompt. It can be different based on some dependencies which you might think are there.

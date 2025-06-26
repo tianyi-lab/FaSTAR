@@ -1,0 +1,1 @@
+Detect the tower in the image, deblur the image and upscale it, and also recolor the tower to gold.

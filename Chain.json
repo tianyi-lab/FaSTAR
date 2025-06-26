@@ -1,0 +1,27 @@
+{
+    "task": "Segment the dog, detect the person, recolor the leaves to red, and expand the image",
+    "subtask_chain": [
+        {
+            "subtask": "Outpainting ()(1)",
+            "parent": []
+        },
+        {
+            "subtask": "Object Segmentation (Dog) (2)",
+            "parent": [
+                "Outpainting ()(1)"
+            ]
+        },
+        {
+            "subtask": "Object Detection (Person) (3)",
+            "parent": [
+                "Object Segmentation (Dog) (2)"
+            ]
+        },
+        {
+            "subtask": "Object Recoloration (Leaves -> Red Leaves) (4)",
+            "parent": [
+                "Object Detection (Person) (3)"
+            ]
+        }
+    ]
+}

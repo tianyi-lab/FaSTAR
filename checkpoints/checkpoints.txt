@@ -1,0 +1,3 @@
+Download Checkpoints from below link and store them in the checkpoints folder and validate the path from configs:
+
+https://drive.google.com/file/d/1E4bWTIweB_XDFeDz7OWsELC7zUZeGTtt/view?usp=share_link

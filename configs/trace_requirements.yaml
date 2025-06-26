@@ -1,0 +1,46 @@
+subtasks:
+  Object Recoloration:
+    trace:
+      - mask_size
+      - relative_mask_area
+      - rgb_color
+      - text_color
+      - target_color
+      - object_type
+      - overlapping_critical_elements
+      - bounding_boxes
+
+  Object Removal:
+    trace:
+      - mask_size
+      - relative_mask_area
+      - object_type
+      - background_content_type
+      - background_reconstruction_needed
+      - bounding_boxes
+
+  Object Replacement:
+    trace:
+      - mask_size
+      - relative_mask_area
+      - object_type
+      - target_object
+      - instance_count
+      - object_clarity
+      - bounding_boxes
+
+  Text Removal:
+    trace:
+      - background_content_behind_text
+      - surrounding_context_similarity
+      - background_artifact_tolerance
+      - background_reconstruction_needed
+      - bounding_boxes
+
+  Text Replacement:
+    trace:
+      - background_content_behind_text
+      - surrounding_context_similarity
+      - background_artifact_tolerance
+      - background_reconstruction_needed
+      - bounding_boxes

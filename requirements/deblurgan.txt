@@ -1,0 +1,4 @@
+torch>=1.7.1
+torchvision>=0.8.2
+dominate>=2.6.0
+scikit-image>=0.17.2

@@ -1,0 +1,15 @@
+{
+    "Outpainting ()(1)": [
+        "None"
+    ],
+    "Object Segmentation (Dog)(2)": [
+        "None"
+    ],
+    "Object Detection (Person)(3)": [
+        "None"
+    ],
+    "Object Recoloration (Leaves -> Red Leaves)(4)": [
+        "SR1",
+        "SR2"
+    ]
+}
