@@ -102,6 +102,10 @@ python run.py \
 - `--output_image`: Path to save the final edited image.
 - `--alpha`: Cost-quality trade-off parameter. `0` prioritizes quality, `2` prioritizes cost.
 
+### Interactive Demo
+
+For a detailed, step-by-step visualization of the entire process, refer to `Demo.ipynb`. This interactive Jupyter Notebook explains the complete workflow, helps in understanding the codebase, and can be easily adapted to run your own custom tasks.
+
 ---
 
 ## 🧠 How It Works: Fast-Slow Planning
