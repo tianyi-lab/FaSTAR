@@ -1,6 +1,6 @@
 # FaSTA*: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing
 
-🔗 [**ArXiv Preprint**](https://arxiv.org/)
+🔗 [**ArXiv Preprint**](http://arxiv.org/abs/2506.20911)
 
 ---
 
@@ -249,14 +249,14 @@ FaSTAR/
 If you find this work useful, please consider citing the foundational paper:
 
 ```bibtex
-@misc{gupta2025costaastcostsensitivetoolpathagent,
-      title={FaSTA*: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing}, 
+@misc{gupta2025fastafastslowtoolpathagent,
+      title={FaSTA$^*$: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing}, 
       author={Advait Gupta and Rishie Raj and Dang Nguyen and Tianyi Zhou},
       year={2025},
-      eprint={xx.xx},
+      eprint={2506.20911},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={[https://arxiv.org/abs/xx.xx](https://arxiv.org/abs/xx.xx)}, 
+      url={https://arxiv.org/abs/2506.20911}, 
 }
 ```
 
