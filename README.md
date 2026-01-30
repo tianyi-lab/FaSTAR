@@ -1,4 +1,4 @@
-# FaSTA*: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing
+# [ICLR 2026] FaSTA*: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing
 
 🔗 [**ArXiv Preprint**](http://arxiv.org/abs/2506.20911)
 
