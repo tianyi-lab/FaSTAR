@@ -251,14 +251,13 @@ FaSTAR/
 If you find this work useful, please consider citing the foundational paper:
 
 ```bibtex
-@misc{gupta2025fastafastslowtoolpathagent,
-      title={FaSTA$^*$: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing}, 
-      author={Advait Gupta and Rishie Raj and Dang Nguyen and Tianyi Zhou},
-      year={2025},
-      eprint={2506.20911},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2506.20911}, 
+@inproceedings{
+gupta2026fasta,
+title={Fa{STA}*: Fast-Slow Toolpath Agent with Subroutine Mining for Efficient Multi-turn Image Editing},
+author={Advait Gupta and Rishie Raj and Dang Nguyen and Tianyi Zhou},
+booktitle={The Fourteenth International Conference on Learning Representations},
+year={2026},
+url={https://openreview.net/forum?id=yhhbL9T1QB}
 }
 ```
 
